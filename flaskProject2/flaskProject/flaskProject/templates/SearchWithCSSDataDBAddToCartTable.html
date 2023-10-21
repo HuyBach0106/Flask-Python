@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search</title>
+</head>
+<body>
+    <h1>Search Example with Flask</h1>
+    <form method="POST" action="/searchData">
+        <input type="text" name="searchInput" placeholder="Enter your search item here">
+        <button type="submit">Search</button>
+    </form>
+<p>
+    {% if search_text %}
+    You searched for: {{ search_text }}
+    <table class="cart">
+        {% for product in carts %}
+        <tr>
+            <th>ID</th>
+            <th>Product</th>
+            <th>Brand</th>
+            <th>Model</th>
+            <th>Price</th>
+            <th>Add To Cart</th>
+            <tr>
+                <td>{{ product[0] }}</td> <!--'id'-->
+                <td>{{ product[1] }}</td> <!--'product'-->
+                <td>{{ product[2] }}</td> <!--'brand'-->
+                <td>{{ product[4] }}</td> <!--'model'-->
+                <td>{{ product[6] }}</td> <!--'price'-->
+                 <td>
+            <form action="/cart/add" method="POST">
+                <input type="hidden" name="product_id" value ="{{ product[0] }}">
+                <input type="number" name="quantity" value="1" min="1">
+                <button type="submit">Add To Cart</button>
+            </form>
+                 </td>
+        </tr>
+        {% endfor %}
+            </table>
+        <!--...-->
+        {% endif %}
+        </p>
+</body>
+</html>

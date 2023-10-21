@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" type="text/css" href="static/style.css">
+</head>
+<body>
+    <h1>Data</h1>
+    <div class="menu">
+        <ul>
+            {% for row in table %}
+            <li>
+                {{ row[0] }} -
+                {{ row[1] }} -
+                {{ row[2] }}
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
