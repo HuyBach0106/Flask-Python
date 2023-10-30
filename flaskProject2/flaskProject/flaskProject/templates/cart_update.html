@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <link rel="stylesheet" href="{{ url_for('static',
+            filename = 'style_cart.css')}}">
+</head>
+<body>
+    <h2>Your Name</h2>
+    {% if user_name %}
+        <p>Hello, {{ user_name }}! <a href="/logout">Logout</a></p>
+    {% else %}
+        <p>You are not logged in. Please <a href="/login">Login</a></p>
+    {% endif %}
+    <h1>Your Shopping Cart</h1>
+    <form method="POST" action="{{ url_for('update_cart') }}"></form>
+    <table class="cart">
+    <thead>
+        <tr>
+            <th>Image</th>
+            <th>ID</th> <th>Name</th> <th>Price</th>
+            <th>Quantity</th>
+            <th>Update Quantity</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+    <tbody>
+        {% for product in carts %}
+        <tr>
+          <td>
+                <img class="product-img" src="{{ product['picture'] }}"
+                     alt="{{ product['picture'] }}">
+            </td>
+            <td>{{ product['id']}}</td>
+            <td>{{ product['name']}}</td>
+            <td>{{ product['price']}}</td>
+            <td>{{ product['quantity']}}</td>
+            <td><input type="number" name="quantity-{{ product['id']}}"
+            min="0" value="{{ product['quantity']}}"></td>
+            <td><input type="checkbox" name="delete-{{ product['id']}}"></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    </form>
+    <input type="submit" value="Update Cart">
+    <h1>Create Order</h1>
+    <form method="POST" action="{{ url_for('proceed_cart')}}">
+        <input type="submit" value="Proceed Cart">
+    </form>
+</body>
+</html>

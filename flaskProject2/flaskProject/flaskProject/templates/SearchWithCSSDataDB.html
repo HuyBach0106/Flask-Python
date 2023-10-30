@@ -15,20 +15,19 @@
     </form>
           {% if search_text %}
     You searched for: {{ search_text }}
-    <div class="menu">
+    <div class="product-grid">
         <ul>
             {% for row in table %}
-            <li>
-                {{ row[0] }} -
-                {{ row[1] }} -
-                {{ row[2] }} -
-                {{ row[4] }}
+            <div class="product-item">
+            <h2>{{ row[4] }}</h2>
+                <img src="{{ row[5] }}" alt="{{ row[5] }}">
+                <p>{{ row[8] }}</p>
             <form action="/cart/add" method="POST">
                 <input type="hidden" name="product_id" value="{{ row[0] }}">
                 <input type="number" name="quantity" value="1" min="1">
                 <button type="submit">Add To Cart</button>
             </form>
-            </li>
+            </div>
             {% endfor %}
         </ul>
     </div>

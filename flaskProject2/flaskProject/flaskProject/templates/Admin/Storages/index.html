@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css')}}">
+    <title>Storage List</title>
+</head>
+<body>
+    <a href="/add">Add new storage</a>
+    <h1>Storage List</h1>
+    <div class="menu">
+        <ul>
+        {% for storage in storages %}
+        <li>{{ storage['product'] }} ({{ storage['brand'] }}) - {{ storage['model'] }}
+            <form action="/delete/{{ storage['id']}}" method="POST" style="display:inline;">
+                <button type="submit">Delete</button>
+            </form>
+            <a href="/edit/{{ storage['id']}}">Edit</a>
+        </li>
+        {{% endfor %}}
+        </ul>
+    </div>
+</body>
+<style>
+    .edit-button .add-new-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+</style>
+<script>
+    function confirmDelete(storageId) {
+        var result = confirm("Are you sure want to delete this storage item?");
+        if (result) {
+            // if user confirms, submit the form to delete the storage item
+            var form = document.getElementById('delete-form-' + storageId);
+            form.submit();
+        }
+    }
+</script>
+<title>Storage List</title>
+</html>

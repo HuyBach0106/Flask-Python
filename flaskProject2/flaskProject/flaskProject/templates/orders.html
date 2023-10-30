@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+</head>
+<body>
+    <h1>Orders</h1>
+<table class="cart">
+    <tr>
+        <th>Order</th>
+    </tr>
+    {% for order in orders %}
+    <tr>
+        <td>
+            <a href="/orders/{{ order[0] }}">
+                {{ order[0] }} - {{ order[7] }}
+            </a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>
