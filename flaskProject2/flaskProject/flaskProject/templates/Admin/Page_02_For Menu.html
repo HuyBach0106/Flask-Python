@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="static/menu.css">
+</head>
+<body>
+    <ul>
+        {% for item in seq %}
+        <li><a href={{ item[1] }}>
+            {{ item[0] }}</a>
+        </li>
+    </ul>
+</body>
+</html>
